@@ -1,4 +1,4 @@
-package GJS.com.junkShop;
+package js.junkShop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
