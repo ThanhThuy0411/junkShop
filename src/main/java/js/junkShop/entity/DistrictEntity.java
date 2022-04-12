@@ -21,7 +21,7 @@ public class DistrictEntity {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name= "district_id", columnDefinition = "CHAR(36)")
+    @Column(columnDefinition = "CHAR(36)")
     @Type(type="uuid-char")
     private UUID districtId;
 

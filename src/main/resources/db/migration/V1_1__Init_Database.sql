@@ -126,7 +126,7 @@ CREATE TABLE `users` (
   `userId` varchar(36) NOT NULL,
   `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `fullname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `phone` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -169,6 +169,9 @@ CREATE TABLE `ward` (
 --
 -- Dumping data for table `ward`
 --
+
+
+
 
 LOCK TABLES `ward` WRITE;
 /*!40000 ALTER TABLE `ward` DISABLE KEYS */;
