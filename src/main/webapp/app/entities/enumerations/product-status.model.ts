@@ -1,0 +1,5 @@
+export enum ProductStatus {
+  PRODUCT_STATUS1 = 'PRODUCT_STATUS1',
+
+  PRODUCT_STATUS2 = 'PRODUCT_STATUS2',
+}

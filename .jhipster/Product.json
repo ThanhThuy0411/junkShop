@@ -1,0 +1,66 @@
+{
+  "applications": "*",
+  "changelogDate": "20220502160427",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "product",
+  "fields": [
+    {
+      "fieldName": "productName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "productType",
+      "fieldType": "ProductType",
+      "fieldValues": "PRODUCT_TYPE1,PRODUCT_TYPE2,PRODUCT_TYPE3"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "productStatus",
+      "fieldType": "ProductStatus",
+      "fieldValues": "PRODUCT_STATUS1,PRODUCT_STATUS2"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Product",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "file",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "file",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ward",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "ward",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "district",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "district",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

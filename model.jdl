@@ -1,0 +1,70 @@
+
+entity Product {
+	productName String required,
+    productType ProductType,
+    price Double,
+    address String,
+    description String,
+    productStatus ProductStatus
+    date Instant
+}
+
+entity File {
+	fileName String required,
+    fileType FileType,
+    url String
+}
+
+entity Order {
+    date Instant,
+    address String
+}
+
+entity Ward {
+    wardName String
+}
+
+entity District {
+    districtName String
+}
+
+
+
+enum FileType {
+    FILE_TYPE1, FILE_TYPE2
+}
+
+enum ProductType {
+    PRODUCT_TYPE1, PRODUCT_TYPE2, PRODUCT_TYPE3
+}
+
+enum ProductStatus {
+    PRODUCT_STATUS1, PRODUCT_STATUS2
+}
+
+
+relationship OneToMany{
+    Product{file} to File,
+}
+
+relationship ManyToOne {
+	Product{ward} to Ward,
+	Product{district} to District,
+    
+    Order{ward} to Ward,
+	Order{district} to District,
+    Order{product} to Product,
+    
+    Ward{district} to District,
+}
+
+dto * with mapstruct
+
+
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl

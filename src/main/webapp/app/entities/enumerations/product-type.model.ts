@@ -1,0 +1,7 @@
+export enum ProductType {
+  PRODUCT_TYPE1 = 'PRODUCT_TYPE1',
+
+  PRODUCT_TYPE2 = 'PRODUCT_TYPE2',
+
+  PRODUCT_TYPE3 = 'PRODUCT_TYPE3',
+}

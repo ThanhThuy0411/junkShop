@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="product">
+      <h2 data-cy="productDetailsHeading"><span jhiTranslate="junkShopApplicationApp.product.detail.title">Product</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ product.id }}</span>
+        </dd>
+
+        <dt><span>Created by</span></dt>
+        <dd>
+          <span>{{ product.user?.login }}</span>
+        </dd>
+
+        <dt><span jhiTranslate="junkShopApplicationApp.product.productName">Product Name</span></dt>
+        <dd>
+          <span>{{ product.productName }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.product.productType">Product Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'junkShopApplicationApp.ProductType.' + product.productType }}">{{ product.productType }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.product.price">Price</span></dt>
+        <dd>
+          <span>{{ product.price }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.product.address">Address</span></dt>
+        <dd>
+          <span>{{ product.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.product.description">Description</span></dt>
+        <dd>
+          <span>{{ product.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.product.productStatus">Product Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'junkShopApplicationApp.ProductStatus.' + product.productStatus }}">{{ product.productStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.product.date">Date</span></dt>
+        <dd>
+          <span>{{ product.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.product.ward">Ward</span></dt>
+        <dd>
+          <div *ngIf="product.ward">
+            <a [routerLink]="['/ward', product.ward?.id, 'view']">{{ product.ward?.wardName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.product.district">District</span></dt>
+        <dd>
+          <div *ngIf="product.district">
+            <a [routerLink]="['/district', product.district?.id, 'view']">{{ product.district?.districtName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/product', product.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

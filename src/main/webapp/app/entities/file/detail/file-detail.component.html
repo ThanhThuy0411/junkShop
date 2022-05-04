@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="file">
+      <h2 data-cy="fileDetailsHeading"><span jhiTranslate="junkShopApplicationApp.file.detail.title">File</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ file.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.file.fileName">File Name</span></dt>
+        <dd>
+          <span>{{ file.fileName }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.file.fileType">File Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'junkShopApplicationApp.FileType.' + file.fileType }}">{{ file.fileType }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.file.url">Url</span></dt>
+        <dd>
+          <span>{{ file.url }}</span>
+        </dd>
+        <dt><span jhiTranslate="junkShopApplicationApp.file.product">Product</span></dt>
+        <dd>
+          <div *ngIf="file.product">
+            <a [routerLink]="['/product', file.product?.id, 'view']">{{ file.product?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/file', file.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

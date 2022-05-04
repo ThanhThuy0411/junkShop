@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20220502160430",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "ward",
+  "fields": [
+    {
+      "fieldName": "wardName",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Ward",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "district",
+      "otherEntityRelationshipName": "ward",
+      "relationshipName": "district",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

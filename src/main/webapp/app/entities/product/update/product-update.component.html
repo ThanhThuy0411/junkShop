@@ -1,0 +1,155 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-product-heading"
+        data-cy="ProductCreateUpdateHeading"
+        jhiTranslate="junkShopApplicationApp.product.home.createOrEditLabel"
+      >
+        Create or edit a Product
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3" [hidden]="!editForm.get('user')?.value">
+          <label class="form-label">Created by</label>
+          <input class="form-control" formControlName="user" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.productName" for="field_productName">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="productName"
+            id="field_productName"
+            data-cy="productName"
+            formControlName="productName"
+          />
+          <div *ngIf="editForm.get('productName')!.invalid && (editForm.get('productName')!.dirty || editForm.get('productName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('productName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.productType" for="field_productType">Product Type</label>
+          <select class="form-control" name="productType" formControlName="productType" id="field_productType" data-cy="productType">
+            <option [ngValue]="null">{{ 'junkShopApplicationApp.ProductType.null' | translate }}</option>
+            <option *ngFor="let productType of productTypeValues" [value]="productType">
+              {{ 'junkShopApplicationApp.ProductType.' + productType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.price" for="field_price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.address" for="field_address">Address</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.productStatus" for="field_productStatus"
+            >Product Status</label
+          >
+          <select
+            class="form-control"
+            name="productStatus"
+            formControlName="productStatus"
+            id="field_productStatus"
+            data-cy="productStatus"
+          >
+            <option [ngValue]="null">{{ 'junkShopApplicationApp.ProductStatus.null' | translate }}</option>
+            <option *ngFor="let productStatus of productStatusValues" [value]="productStatus">
+              {{ 'junkShopApplicationApp.ProductStatus.' + productStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.date" for="field_date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.ward" for="field_ward">Ward</label>
+          <select class="form-control" id="field_ward" data-cy="ward" name="ward" formControlName="ward">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="wardOption.id === editForm.get('ward')!.value?.id ? editForm.get('ward')!.value : wardOption"
+              *ngFor="let wardOption of wardsSharedCollection; trackBy: trackWardById"
+            >
+              {{ wardOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.district" for="field_district">District</label>
+          <select class="form-control" id="field_district" data-cy="district" name="district" formControlName="district">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="districtOption.id === editForm.get('district')!.value?.id ? editForm.get('district')!.value : districtOption"
+              *ngFor="let districtOption of districtsSharedCollection; trackBy: trackDistrictById"
+            >
+              {{ districtOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

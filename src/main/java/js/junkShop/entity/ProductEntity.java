@@ -3,10 +3,7 @@ package js.junkShop.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import js.junkShop.enumration.ProductType;
 import js.junkShop.enumration.Status;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -18,7 +15,9 @@ import java.util.*;
 @Data
 @Builder
 @Entity
-@Table(name ="product")
+@Table(name = "product")
+@Getter
+@Setter
 public class ProductEntity {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
