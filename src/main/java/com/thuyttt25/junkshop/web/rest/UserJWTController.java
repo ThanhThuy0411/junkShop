@@ -14,9 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Controller to authenticate users.
- */
 @RestController
 @RequestMapping("/api")
 public class UserJWTController {
@@ -45,9 +42,6 @@ public class UserJWTController {
         return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
     }
 
-    /**
-     * Object to return as body in JWT Authentication.
-     */
     static class JWTToken {
 
         private String idToken;

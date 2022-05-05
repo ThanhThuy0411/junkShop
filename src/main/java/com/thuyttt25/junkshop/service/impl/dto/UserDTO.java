@@ -2,9 +2,6 @@ package com.thuyttt25.junkshop.service.dto;
 
 import com.thuyttt25.junkshop.domain.User;
 
-/**
- * A DTO representing a user, with only the public attributes.
- */
 public class UserDTO {
 
     private Long id;
@@ -37,7 +34,6 @@ public class UserDTO {
         this.login = login;
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "UserDTO{" +

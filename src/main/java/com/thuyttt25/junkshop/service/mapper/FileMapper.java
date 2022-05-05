@@ -6,9 +6,6 @@ import com.thuyttt25.junkshop.service.dto.FileDTO;
 import com.thuyttt25.junkshop.service.dto.ProductDTO;
 import org.mapstruct.*;
 
-/**
- * Mapper for the entity {@link File} and its DTO {@link FileDTO}.
- */
 @Mapper(componentModel = "spring")
 public interface FileMapper extends EntityMapper<FileDTO, File> {
     @Mapping(target = "product", source = "product", qualifiedByName = "productId")

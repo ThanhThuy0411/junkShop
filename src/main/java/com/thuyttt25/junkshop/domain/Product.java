@@ -12,9 +12,6 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-/**
- * A Product.
- */
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -63,8 +60,6 @@ public class Product implements Serializable {
 
     @ManyToOne
     private User user;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
         return this.id;
@@ -240,8 +235,6 @@ public class Product implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -255,11 +248,9 @@ public class Product implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "Product{" +

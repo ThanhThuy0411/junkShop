@@ -23,9 +23,6 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
-/**
- * REST controller for managing {@link com.thuyttt25.junkshop.domain.Ward}.
- */
 @RestController
 @RequestMapping("/api")
 public class WardResource {
@@ -46,13 +43,6 @@ public class WardResource {
         this.wardRepository = wardRepository;
     }
 
-    /**
-     * {@code POST  /wards} : Create a new ward.
-     *
-     * @param wardDTO the wardDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new wardDTO, or with status {@code 400 (Bad Request)} if the ward has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/wards")
     public ResponseEntity<WardDTO> createWard(@RequestBody WardDTO wardDTO) throws URISyntaxException {
         log.debug("REST request to save Ward : {}", wardDTO);
@@ -66,16 +56,6 @@ public class WardResource {
             .body(result);
     }
 
-    /**
-     * {@code PUT  /wards/:id} : Updates an existing ward.
-     *
-     * @param id the id of the wardDTO to save.
-     * @param wardDTO the wardDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated wardDTO,
-     * or with status {@code 400 (Bad Request)} if the wardDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the wardDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PutMapping("/wards/{id}")
     public ResponseEntity<WardDTO> updateWard(@PathVariable(value = "id", required = false) final Long id, @RequestBody WardDTO wardDTO)
         throws URISyntaxException {
@@ -98,17 +78,6 @@ public class WardResource {
             .body(result);
     }
 
-    /**
-     * {@code PATCH  /wards/:id} : Partial updates given fields of an existing ward, field will ignore if it is null
-     *
-     * @param id the id of the wardDTO to save.
-     * @param wardDTO the wardDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated wardDTO,
-     * or with status {@code 400 (Bad Request)} if the wardDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the wardDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the wardDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PatchMapping(value = "/wards/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<WardDTO> partialUpdateWard(
         @PathVariable(value = "id", required = false) final Long id,
@@ -134,12 +103,6 @@ public class WardResource {
         );
     }
 
-    /**
-     * {@code GET  /wards} : get all the wards.
-     *
-     * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of wards in body.
-     */
     @GetMapping("/wards")
     public ResponseEntity<List<WardDTO>> getAllWards(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Wards");
@@ -148,12 +111,6 @@ public class WardResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /wards/:id} : get the "id" ward.
-     *
-     * @param id the id of the wardDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the wardDTO, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/wards/{id}")
     public ResponseEntity<WardDTO> getWard(@PathVariable Long id) {
         log.debug("REST request to get Ward : {}", id);
@@ -161,12 +118,6 @@ public class WardResource {
         return ResponseUtil.wrapOrNotFound(wardDTO);
     }
 
-    /**
-     * {@code DELETE  /wards/:id} : delete the "id" ward.
-     *
-     * @param id the id of the wardDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
     @DeleteMapping("/wards/{id}")
     public ResponseEntity<Void> deleteWard(@PathVariable Long id) {
         log.debug("REST request to delete Ward : {}", id);

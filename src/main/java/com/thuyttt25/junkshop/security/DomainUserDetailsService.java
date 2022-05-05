@@ -15,9 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Authenticate a user from the database.
- */
 @Component("userDetailsService")
 public class DomainUserDetailsService implements UserDetailsService {
 

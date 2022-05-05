@@ -12,9 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import tech.jhipster.config.JHipsterProperties;
 
-/*
- * Configures the console and Logstash log appenders from the app properties
- */
 @Configuration
 public class LoggingConfiguration {
 

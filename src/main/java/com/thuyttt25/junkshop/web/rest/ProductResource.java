@@ -25,9 +25,6 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
-/**
- * REST controller for managing {@link com.thuyttt25.junkshop.domain.Product}.
- */
 @RestController
 @RequestMapping("/api")
 public class ProductResource {
@@ -48,13 +45,6 @@ public class ProductResource {
         this.productRepository = productRepository;
     }
 
-    /**
-     * {@code POST  /products} : Create a new product.
-     *
-     * @param productDTO the productDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new productDTO, or with status {@code 400 (Bad Request)} if the product has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/products")
     public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) throws URISyntaxException {
         log.debug("REST request to save Product : {}", productDTO);
@@ -68,16 +58,6 @@ public class ProductResource {
             .body(result);
     }
 
-    /**
-     * {@code PUT  /products/:id} : Updates an existing product.
-     *
-     * @param id the id of the productDTO to save.
-     * @param productDTO the productDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated productDTO,
-     * or with status {@code 400 (Bad Request)} if the productDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the productDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PutMapping("/products/{id}")
     public ResponseEntity<ProductDTO> updateProduct(
         @PathVariable(value = "id", required = false) final Long id,
@@ -102,17 +82,6 @@ public class ProductResource {
             .body(result);
     }
 
-    /**
-     * {@code PATCH  /products/:id} : Partial updates given fields of an existing product, field will ignore if it is null
-     *
-     * @param id the id of the productDTO to save.
-     * @param productDTO the productDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated productDTO,
-     * or with status {@code 400 (Bad Request)} if the productDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the productDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the productDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PatchMapping(value = "/products/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<ProductDTO> partialUpdateProduct(
         @PathVariable(value = "id", required = false) final Long id,
@@ -138,12 +107,6 @@ public class ProductResource {
         );
     }
 
-    /**
-     * {@code GET  /products} : get all the products.
-     *
-     * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of products in body.
-     */
     @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>> getAllProducts(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Products");
@@ -152,12 +115,6 @@ public class ProductResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /products/:id} : get the "id" product.
-     *
-     * @param id the id of the productDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the productDTO, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/products/{id}")
     public ResponseEntity<ProductDTO> getProduct(@PathVariable Long id) {
         log.debug("REST request to get Product : {}", id);
@@ -165,12 +122,6 @@ public class ProductResource {
         return ResponseUtil.wrapOrNotFound(productDTO);
     }
 
-    /**
-     * {@code DELETE  /products/:id} : delete the "id" product.
-     *
-     * @param id the id of the productDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
     @DeleteMapping("/products/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         log.debug("REST request to delete Product : {}", id);

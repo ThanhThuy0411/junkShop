@@ -13,9 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Service Implementation for managing {@link File}.
- */
 @Service
 @Transactional
 public class FileServiceImpl implements FileService {

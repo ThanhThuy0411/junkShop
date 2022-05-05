@@ -7,9 +7,6 @@ import com.thuyttt25.junkshop.domain.Ward;
 import com.thuyttt25.junkshop.service.dto.*;
 import org.mapstruct.*;
 
-/**
- * Mapper for the entity {@link Product} and its DTO {@link ProductDTO}.
- */
 @Mapper(componentModel = "spring")
 public interface ProductMapper extends EntityMapper<ProductDTO, Product> {
 //    @Mapping(target = "ward", source = "ward", qualifiedByName = "wardId")

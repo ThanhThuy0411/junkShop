@@ -23,9 +23,6 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
-/**
- * REST controller for managing {@link com.thuyttt25.junkshop.domain.Order}.
- */
 @RestController
 @RequestMapping("/api")
 public class OrderResource {
@@ -46,13 +43,6 @@ public class OrderResource {
         this.orderRepository = orderRepository;
     }
 
-    /**
-     * {@code POST  /orders} : Create a new order.
-     *
-     * @param orderDTO the orderDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new orderDTO, or with status {@code 400 (Bad Request)} if the order has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PostMapping("/orders")
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) throws URISyntaxException {
         log.debug("REST request to save Order : {}", orderDTO);
@@ -66,16 +56,6 @@ public class OrderResource {
             .body(result);
     }
 
-    /**
-     * {@code PUT  /orders/:id} : Updates an existing order.
-     *
-     * @param id the id of the orderDTO to save.
-     * @param orderDTO the orderDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated orderDTO,
-     * or with status {@code 400 (Bad Request)} if the orderDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the orderDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PutMapping("/orders/{id}")
     public ResponseEntity<OrderDTO> updateOrder(
         @PathVariable(value = "id", required = false) final Long id,
@@ -100,17 +80,6 @@ public class OrderResource {
             .body(result);
     }
 
-    /**
-     * {@code PATCH  /orders/:id} : Partial updates given fields of an existing order, field will ignore if it is null
-     *
-     * @param id the id of the orderDTO to save.
-     * @param orderDTO the orderDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated orderDTO,
-     * or with status {@code 400 (Bad Request)} if the orderDTO is not valid,
-     * or with status {@code 404 (Not Found)} if the orderDTO is not found,
-     * or with status {@code 500 (Internal Server Error)} if the orderDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
-     */
     @PatchMapping(value = "/orders/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<OrderDTO> partialUpdateOrder(
         @PathVariable(value = "id", required = false) final Long id,
@@ -136,12 +105,6 @@ public class OrderResource {
         );
     }
 
-    /**
-     * {@code GET  /orders} : get all the orders.
-     *
-     * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of orders in body.
-     */
     @GetMapping("/orders")
     public ResponseEntity<List<OrderDTO>> getAllOrders(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Orders");
@@ -150,12 +113,6 @@ public class OrderResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    /**
-     * {@code GET  /orders/:id} : get the "id" order.
-     *
-     * @param id the id of the orderDTO to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the orderDTO, or with status {@code 404 (Not Found)}.
-     */
     @GetMapping("/orders/{id}")
     public ResponseEntity<OrderDTO> getOrder(@PathVariable Long id) {
         log.debug("REST request to get Order : {}", id);
@@ -163,12 +120,6 @@ public class OrderResource {
         return ResponseUtil.wrapOrNotFound(orderDTO);
     }
 
-    /**
-     * {@code DELETE  /orders/:id} : delete the "id" order.
-     *
-     * @param id the id of the orderDTO to delete.
-     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
-     */
     @DeleteMapping("/orders/{id}")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         log.debug("REST request to delete Order : {}", id);

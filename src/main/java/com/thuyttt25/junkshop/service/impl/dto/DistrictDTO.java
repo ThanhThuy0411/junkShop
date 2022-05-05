@@ -3,9 +3,6 @@ package com.thuyttt25.junkshop.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * A DTO for the {@link com.thuyttt25.junkshop.domain.District} entity.
- */
 public class DistrictDTO implements Serializable {
 
     private Long id;
@@ -49,7 +46,6 @@ public class DistrictDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "DistrictDTO{" +
