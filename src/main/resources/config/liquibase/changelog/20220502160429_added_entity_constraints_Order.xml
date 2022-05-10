@@ -9,31 +9,31 @@
     <changeSet id="20220502160429-2" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="ward_id"
-                                 baseTableName="jhi_order"
-                                 constraintName="fk_jhi_order__ward_id"
+                                 baseTableName="order_hst"
+                                 constraintName="fk_order_hst__ward_id"
                                  referencedColumnNames="id"
                                  referencedTableName="ward"/>
 
         <addForeignKeyConstraint baseColumnNames="district_id"
-                                 baseTableName="jhi_order"
-                                 constraintName="fk_jhi_order__district_id"
+                                 baseTableName="order_hst"
+                                 constraintName="fk_order_hst__district_id"
                                  referencedColumnNames="id"
                                  referencedTableName="district"/>
 
         <addForeignKeyConstraint baseColumnNames="product_id"
-                                 baseTableName="jhi_order"
-                                 constraintName="fk_jhi_order__product_id"
+                                 baseTableName="order_hst"
+                                 constraintName="fk_order_hst__product_id"
                                  referencedColumnNames="id"
                                  referencedTableName="product"/>
     </changeSet>
     <changeSet id="1651569269208-3" author="admin (generated)">
-        <addColumn tableName="jhi_order">
+        <addColumn tableName="order_hst">
             <column name="user_id" type="BIGINT"/>
         </addColumn>
     </changeSet>
     <changeSet id="1651569269208-4" author="admin (generated)">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_order"
-                                 constraintName="FK_JHI_ORDER_ON_USER" referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="order_hst"
+                                 constraintName="FK_ORDER_HST_ON_USER" referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
 </databaseChangeLog>

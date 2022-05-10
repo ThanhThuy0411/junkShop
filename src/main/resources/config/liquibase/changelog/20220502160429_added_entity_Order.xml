@@ -10,7 +10,7 @@
         Added the entity Order.
     -->
     <changeSet id="20220502160429-1" author="jhipster">
-        <createTable tableName="jhi_order">
+        <createTable tableName="order_hst">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -31,7 +31,7 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="jhi_order" columnName="date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="order_hst" columnName="date" columnDataType="${datetimeType}"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -46,9 +46,9 @@
     -->
     <changeSet id="20220502160429-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/jhi_order.csv"
+                  file="config/liquibase/fake-data/order_hst.csv"
                   separator=";"
-                  tableName="jhi_order"
+                  tableName="order_hst"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
             <column name="date" type="date"/>

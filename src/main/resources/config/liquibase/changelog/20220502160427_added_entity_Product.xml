@@ -80,6 +80,6 @@
     </changeSet>
     <changeSet id="1651566020786-4" author="admin (generated)">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="product" constraintName="FK_PRODUCT_ON_USER"
-                                 referencedColumnNames="id" referencedTableName="jhi_user"/>
+                                 referencedColumnNames="id" referencedTableName="user"/>
     </changeSet>
 </databaseChangeLog>

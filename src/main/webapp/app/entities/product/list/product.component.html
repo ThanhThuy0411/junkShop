@@ -77,12 +77,12 @@
           <td>{{ product.date | formatMediumDatetime }}</td>
           <td>
             <div *ngIf="product.ward">
-              <a [routerLink]="['/ward', product.ward?.id, 'view']">{{ product.ward?.id }}</a>
+              <a [routerLink]="['/ward', product.ward?.id, 'view']">{{ product.ward?.wardName }}</a>
             </div>
           </td>
           <td>
             <div *ngIf="product.district">
-              <a [routerLink]="['/district', product.district?.id, 'view']">{{ product.district?.id }}</a>
+              <a [routerLink]="['/district', product.district?.id, 'view']">{{ product.district?.districtName }}</a>
             </div>
           </td>
           <td class="text-end">

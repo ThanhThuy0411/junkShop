@@ -3,7 +3,7 @@
   "changelogDate": "20220502160429",
   "dto": "mapstruct",
   "embedded": false,
-  "entityTableName": "jhi_order",
+  "entityTableName": "order_hst",
   "fields": [
     {
       "fieldName": "date",

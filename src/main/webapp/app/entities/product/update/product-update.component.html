@@ -116,7 +116,7 @@
               [ngValue]="wardOption.id === editForm.get('ward')!.value?.id ? editForm.get('ward')!.value : wardOption"
               *ngFor="let wardOption of wardsSharedCollection; trackBy: trackWardById"
             >
-              {{ wardOption.id }}
+              {{ wardOption.wardName }}
             </option>
           </select>
         </div>
@@ -129,7 +129,7 @@
               [ngValue]="districtOption.id === editForm.get('district')!.value?.id ? editForm.get('district')!.value : districtOption"
               *ngFor="let districtOption of districtsSharedCollection; trackBy: trackDistrictById"
             >
-              {{ districtOption.id }}
+              {{ districtOption.districtName }}
             </option>
           </select>
         </div>

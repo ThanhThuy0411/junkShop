@@ -9,7 +9,7 @@ import javax.persistence.*;
  * A Order.
  */
 @Entity
-@Table(name = "jhi_order")
+@Table(name = "order_hst")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
