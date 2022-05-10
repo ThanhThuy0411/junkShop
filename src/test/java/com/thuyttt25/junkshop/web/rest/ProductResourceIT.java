@@ -38,8 +38,8 @@ class ProductResourceIT {
     private static final String DEFAULT_PRODUCT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_PRODUCT_NAME = "BBBBBBBBBB";
 
-    private static final ProductType DEFAULT_PRODUCT_TYPE = ProductType.PRODUCT_TYPE1;
-    private static final ProductType UPDATED_PRODUCT_TYPE = ProductType.PRODUCT_TYPE2;
+    private static final ProductType DEFAULT_PRODUCT_TYPE = ProductType.Textbooks;
+    private static final ProductType UPDATED_PRODUCT_TYPE = ProductType.HouseWare;
 
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
@@ -50,8 +50,8 @@ class ProductResourceIT {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final ProductStatus DEFAULT_PRODUCT_STATUS = ProductStatus.PRODUCT_STATUS1;
-    private static final ProductStatus UPDATED_PRODUCT_STATUS = ProductStatus.PRODUCT_STATUS2;
+    private static final ProductStatus DEFAULT_PRODUCT_STATUS = ProductStatus.Stocking;
+    private static final ProductStatus UPDATED_PRODUCT_STATUS = ProductStatus.Sold;
 
     private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);

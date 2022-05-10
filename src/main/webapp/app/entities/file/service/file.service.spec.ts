@@ -23,7 +23,7 @@ describe('File Service', () => {
     elemDefault = {
       id: 0,
       fileName: 'AAAAAAA',
-      fileType: FileType.FILE_TYPE1,
+      fileType: FileType.Image,
       url: 'AAAAAAA',
     };
   });

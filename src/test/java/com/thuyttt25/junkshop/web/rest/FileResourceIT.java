@@ -35,8 +35,8 @@ class FileResourceIT {
     private static final String DEFAULT_FILE_NAME = "AAAAAAAAAA";
     private static final String UPDATED_FILE_NAME = "BBBBBBBBBB";
 
-    private static final FileType DEFAULT_FILE_TYPE = FileType.FILE_TYPE1;
-    private static final FileType UPDATED_FILE_TYPE = FileType.FILE_TYPE2;
+    private static final FileType DEFAULT_FILE_TYPE = FileType.Image;
+    private static final FileType UPDATED_FILE_TYPE = FileType.Video;
 
     private static final String DEFAULT_URL = "AAAAAAAAAA";
     private static final String UPDATED_URL = "BBBBBBBBBB";

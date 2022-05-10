@@ -1,7 +1,7 @@
 export enum ProductType {
-  PRODUCT_TYPE1 = 'PRODUCT_TYPE1',
+  Textbooks = 'Textbooks',
 
-  PRODUCT_TYPE2 = 'PRODUCT_TYPE2',
+  HouseWare = 'HouseWare',
 
-  PRODUCT_TYPE3 = 'PRODUCT_TYPE3',
+  Other = 'Other',
 }

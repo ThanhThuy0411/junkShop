@@ -31,15 +31,15 @@ entity District {
 
 
 enum FileType {
-    FILE_TYPE1, FILE_TYPE2
+    Image, Video
 }
 
 enum ProductType {
-    PRODUCT_TYPE1, PRODUCT_TYPE2, PRODUCT_TYPE3
+    Textbooks, HouseWare, Other
 }
 
 enum ProductStatus {
-    PRODUCT_STATUS1, PRODUCT_STATUS2
+    Stocking, Sold
 }
 
 
@@ -50,11 +50,11 @@ relationship OneToMany{
 relationship ManyToOne {
 	Product{ward} to Ward,
 	Product{district} to District,
-    
+
     Order{ward} to Ward,
 	Order{district} to District,
     Order{product} to Product,
-    
+
     Ward{district} to District,
 }
 

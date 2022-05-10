@@ -13,7 +13,7 @@
     {
       "fieldName": "productType",
       "fieldType": "ProductType",
-      "fieldValues": "PRODUCT_TYPE1,PRODUCT_TYPE2,PRODUCT_TYPE3"
+      "fieldValues": "Textbooks,HouseWare,Other"
     },
     {
       "fieldName": "price",
@@ -30,7 +30,7 @@
     {
       "fieldName": "productStatus",
       "fieldType": "ProductStatus",
-      "fieldValues": "PRODUCT_STATUS1,PRODUCT_STATUS2"
+      "fieldValues": "Stocking,Sold"
     },
     {
       "fieldName": "date",

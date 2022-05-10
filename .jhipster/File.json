@@ -13,7 +13,7 @@
     {
       "fieldName": "fileType",
       "fieldType": "FileType",
-      "fieldValues": "FILE_TYPE1,FILE_TYPE2"
+      "fieldValues": "Image,Video"
     },
     {
       "fieldName": "url",

@@ -2,8 +2,8 @@
   "junkShopApplicationApp": {
     "ProductStatus": {
       "null": "",
-      "PRODUCT_STATUS1": "PRODUCT_STATUS1",
-      "PRODUCT_STATUS2": "PRODUCT_STATUS2"
+      "Stocking": "Stocking",
+      "Sold": "Sold"
     }
   }
 }
