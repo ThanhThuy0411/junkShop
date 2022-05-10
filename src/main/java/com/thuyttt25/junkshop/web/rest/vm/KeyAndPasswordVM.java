@@ -1,5 +1,8 @@
 package com.thuyttt25.junkshop.web.rest.vm;
 
+/**
+ * View Model object for storing the user's key and password.
+ */
 public class KeyAndPasswordVM {
 
     private String key;

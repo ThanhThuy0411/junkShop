@@ -1,5 +1,8 @@
 package com.thuyttt25.junkshop.config;
 
+/**
+ * Application constants.
+ */
 public final class Constants {
 
     // Regex for acceptable logins

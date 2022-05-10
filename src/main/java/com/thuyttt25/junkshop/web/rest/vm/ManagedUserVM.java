@@ -3,6 +3,9 @@ package com.thuyttt25.junkshop.web.rest.vm;
 import com.thuyttt25.junkshop.service.dto.AdminUserDTO;
 import javax.validation.constraints.Size;
 
+/**
+ * View Model extending the AdminUserDTO, which is meant to be used in the user management UI.
+ */
 public class ManagedUserVM extends AdminUserDTO {
 
     public static final int PASSWORD_MIN_LENGTH = 4;
@@ -13,6 +16,7 @@ public class ManagedUserVM extends AdminUserDTO {
     private String password;
 
     public ManagedUserVM() {
+        // Empty constructor needed for Jackson.
     }
 
     public String getPassword() {
@@ -23,6 +27,7 @@ public class ManagedUserVM extends AdminUserDTO {
         this.password = password;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "ManagedUserVM{" + super.toString() + "} ";

@@ -6,6 +6,9 @@ import com.thuyttt25.junkshop.service.dto.DistrictDTO;
 import com.thuyttt25.junkshop.service.dto.WardDTO;
 import org.mapstruct.*;
 
+/**
+ * Mapper for the entity {@link Ward} and its DTO {@link WardDTO}.
+ */
 @Mapper(componentModel = "spring")
 public interface WardMapper extends EntityMapper<WardDTO, Ward> {
     @Mapping(target = "district", source = "district", qualifiedByName = "districtId")

@@ -7,6 +7,9 @@ import java.time.Instant;
 import java.util.Objects;
 import javax.validation.constraints.*;
 
+/**
+ * A DTO for the {@link com.thuyttt25.junkshop.domain.Product} entity.
+ */
 public class ProductDTO implements Serializable {
 
     private Long id;
@@ -141,6 +144,7 @@ public class ProductDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "ProductDTO{" +

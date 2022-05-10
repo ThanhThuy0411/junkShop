@@ -32,6 +32,10 @@ import org.zalando.problem.violations.ConstraintViolationProblem;
 import tech.jhipster.config.JHipsterConstants;
 import tech.jhipster.web.util.HeaderUtil;
 
+/**
+ * Controller advice to translate the server side exceptions to client-friendly json structures.
+ * The error response follows RFC7807 - Problem Details for HTTP APIs (https://tools.ietf.org/html/rfc7807).
+ */
 @ControllerAdvice
 public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait {
 
@@ -49,6 +53,9 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
         this.env = env;
     }
 
+    /**
+     * Post-process the Problem payload to add the message key for the front-end if needed.
+     */
     @Override
     public ResponseEntity<Problem> process(@Nullable ResponseEntity<Problem> entity, NativeWebRequest request) {
         if (entity == null) {
@@ -209,6 +216,7 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
     }
 
     private boolean containsPackageName(String message) {
+        // This list is for sure not complete
         return StringUtils.containsAny(message, "org.", "java.", "net.", "javax.", "com.", "io.", "de.", "com.thuyttt25.junkshop");
     }
 }

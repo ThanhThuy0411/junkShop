@@ -15,6 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Service Implementation for managing {@link Order}.
+ */
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
