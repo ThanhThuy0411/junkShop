@@ -1,11 +1,57 @@
-id;ward_name
-1;Sudan Chips
-2;Salad
-3;invoice XML
-4;RAM
-5;matrix Road Mouse
-6;Spring withdrawal Wooden
-7;circuit
-8;bricks-and-clicks front-end Towels
-9;24/7 connecting
-10;Gorgeous
+id;ward_name;district_id
+1;Phường Tam Thuận;1
+2;Phường Thanh Khê Tây;1
+3;Phường Thanh Khê Đông;1
+4;Phường Xuân Hà;1
+5;Phường Tân Chính;1
+6;Phường Chính Gián;1
+7;Phường Vĩnh Trung;1
+8;Phường Thạc Gián;1
+9;Phường An Khê;1
+10;Phường Hòa Khê;1
+11;Phường Thọ Quang;2
+12;Phường Nại Hiên Đông;2
+13;Phường Mân Thái;2
+14;Phường An Hải Bắc;2
+15;Phường Phước Mỹ;2
+16;Phường An Hải Tây;2
+17;Phường An Hải Đông;2
+18;Phường Mỹ An;3
+19;Phường Khuê Mỹ;3
+20;Phường Hoà Quý;3
+21;Phường Hoà Hải;3
+22;Phường Khuê Trung;6
+23;Phường Hòa Phát;6
+24;Phường Hòa An;6
+25;Phường Hòa Thọ Tây;6
+26;Phường Hòa Thọ Đông;6
+27;Phường Hòa Xuân;6
+28;Phường Hòa Hiệp Bắc;4
+29;Phường Hòa Hiệp Nam;4
+30;Phường Hòa Khánh Bắc;4
+31;Phường Hòa Khánh Nam;4
+32;Phường Hòa Minh;4
+33;Phường Thanh Bình;5
+34;Phường Thuận Phước;5
+35;Phường Thạch Thang;5
+36;Phường Hải Châu I;5
+37;Phường Hải Châu II;5
+38;Phường Phước Ninh;5
+39;Phường Hòa Thuận Tây;5
+40;Phường Hòa Thuận Đông;5
+41;Phường Nam Dương;5
+42;Phường Bình Hiên;5
+43;Phường Bình Thuận;5
+44;Phường Hòa Cường Bắc;5
+45;Phường Hòa Cường Nam;5
+46;Xã Hòa Bắc;7
+47;Xã Hòa Ninh;7
+48;Xã Hòa Liên;7
+49;Xã Hòa Sơn;7
+50;Xã Hòa Nhơn;7
+51;Xã Hòa Phú;7
+52;Xã Hòa Phong;7
+53;Xã Hòa Châu;7
+54;Xã Hòa Tiến;7
+55;Xã Hòa Phước;7
+56;Xã Hòa Khương;7
