@@ -39,19 +39,6 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="junkShopApplicationApp.order.ward" for="field_ward">Ward</label>
-          <select class="form-control" id="field_ward" data-cy="ward" name="ward" formControlName="ward">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="wardOption.id === editForm.get('ward')!.value?.id ? editForm.get('ward')!.value : wardOption"
-              *ngFor="let wardOption of wardsSharedCollection; trackBy: trackWardById"
-            >
-              {{ wardOption.id }}
-            </option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
           <label class="form-label" jhiTranslate="junkShopApplicationApp.order.district" for="field_district">District</label>
           <select class="form-control" id="field_district" data-cy="district" name="district" formControlName="district">
             <option [ngValue]="null"></option>
@@ -59,7 +46,20 @@
               [ngValue]="districtOption.id === editForm.get('district')!.value?.id ? editForm.get('district')!.value : districtOption"
               *ngFor="let districtOption of districtsSharedCollection; trackBy: trackDistrictById"
             >
-              {{ districtOption.id }}
+              {{ districtOption.districtName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.order.ward" for="field_ward">Ward</label>
+          <select class="form-control" id="field_ward" data-cy="ward" name="ward" formControlName="ward">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="wardOption.id === editForm.get('ward')!.value?.id ? editForm.get('ward')!.value : wardOption"
+              *ngFor="let wardOption of wardsSharedCollection; trackBy: trackWardById"
+            >
+              {{ wardOption.wardName }}
             </option>
           </select>
         </div>
@@ -72,7 +72,7 @@
               [ngValue]="productOption.id === editForm.get('product')!.value?.id ? editForm.get('product')!.value : productOption"
               *ngFor="let productOption of productsSharedCollection; trackBy: trackProductById"
             >
-              {{ productOption.id }}
+              {{ productOption.productName }}
             </option>
           </select>
         </div>

@@ -11,7 +11,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface WardMapper extends EntityMapper<WardDTO, Ward> {
-    @Mapping(target = "district", source = "district", qualifiedByName = "districtId")
+//    @Mapping(target = "district", source = "district", qualifiedByName = "districtId")
     WardDTO toDto(Ward s);
 
     @Named("districtId")

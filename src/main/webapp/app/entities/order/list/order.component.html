@@ -59,18 +59,18 @@
           <td>{{ order.date | formatMediumDatetime }}</td>
           <td>{{ order.address }}</td>
           <td>
-            <div *ngIf="order.ward">
-              <a [routerLink]="['/ward', order.ward?.id, 'view']">{{ order.ward?.id }}</a>
+            <div *ngIf="order.district">
+              <a [routerLink]="['/district', order.district?.id, 'view']">{{ order.district?.districtName }}</a>
             </div>
           </td>
           <td>
-            <div *ngIf="order.district">
-              <a [routerLink]="['/district', order.district?.id, 'view']">{{ order.district?.id }}</a>
+            <div *ngIf="order.ward">
+              <a [routerLink]="['/ward', order.ward?.id, 'view']">{{ order.ward?.wardName }}</a>
             </div>
           </td>
           <td>
             <div *ngIf="order.product">
-              <a [routerLink]="['/product', order.product?.id, 'view']">{{ order.product?.id }}</a>
+              <a [routerLink]="['/product', order.product?.id, 'view']">{{ order.product?.productName }}</a>
             </div>
           </td>
           <td class="text-end">
