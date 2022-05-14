@@ -92,9 +92,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<OrderDTO> findAll(Pageable pageable) {
+    public Page<OrderDTO> findAll(Pageable pageable, Long userId) {
         log.debug("Request to get all Orders");
-        return orderRepository.findAll(pageable).map(orderMapper::toDto);
+        Optional<Long>  userIdOp = Optional.ofNullable(userId);
+        if(userIdOp.isPresent()){
+            return orderRepository.findAllByUserId(pageable , userIdOp.get()).map(orderMapper::toDto);
+        }
+        else{
+            return orderRepository.findAll(pageable).map(orderMapper::toDto);
+
+        }
     }
 
     @Override

@@ -9,6 +9,8 @@ import { IOrder } from '../order.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { OrderService } from '../service/order.service';
 import { OrderDeleteDialogComponent } from '../delete/order-delete-dialog.component';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/auth/account.model';
 
 @Component({
   selector: 'jhi-order',
@@ -23,37 +25,45 @@ export class OrderComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  account: Account | null = null;
 
   constructor(
     protected orderService: OrderService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private accountService: AccountService
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
+    let orderQuery: any = {
+      page: pageToLoad - 1,
+      size: this.itemsPerPage,
+      sort: this.sort(),
+    };
+    if (!this.accountService.hasAnyAuthority('ROLE_ADMIN')) {
+      orderQuery = { ...orderQuery, userId: this.account?.id };
+    }
 
-    this.orderService
-      .query({
-        page: pageToLoad - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
-      .subscribe({
-        next: (res: HttpResponse<IOrder[]>) => {
-          this.isLoading = false;
-          this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
-        },
-        error: () => {
-          this.isLoading = false;
-          this.onError();
-        },
-      });
+    this.orderService.query(orderQuery).subscribe({
+      next: (res: HttpResponse<IOrder[]>) => {
+        this.isLoading = false;
+        this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
   }
 
   ngOnInit(): void {
+    this.accountService.getAuthenticationState().subscribe(account => {
+      this.account = account;
+    });
+
     this.handleNavigation();
   }
 

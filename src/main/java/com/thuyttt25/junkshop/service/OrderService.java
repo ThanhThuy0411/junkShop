@@ -39,7 +39,7 @@ public interface OrderService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    Page<OrderDTO> findAll(Pageable pageable);
+    Page<OrderDTO> findAll(Pageable pageable, Long userId);
 
     /**
      * Get the "id" order.
