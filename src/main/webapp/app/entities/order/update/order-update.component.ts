@@ -30,6 +30,7 @@ export class OrderUpdateComponent implements OnInit {
   isSaving = false;
 
   wardsSharedCollection: IWard[] = [];
+  wardsSharedCollectionByDistrict: IWard[] = [];
   districtsSharedCollection: IDistrict[] = [];
   productsSharedCollection: IProduct[] = [];
 
@@ -71,6 +72,14 @@ export class OrderUpdateComponent implements OnInit {
 
   previousState(): void {
     window.history.back();
+  }
+
+  onDistrictChange(selectedDistrict: IDistrict): void {
+    // reset value for ward
+    this.editForm.controls['ward'].setValue('');
+
+    // filter ward list by selected district
+    this.wardsSharedCollectionByDistrict = this.wardsSharedCollection.filter(ward => ward.district?.id === selectedDistrict.id);
   }
 
   save(): void {

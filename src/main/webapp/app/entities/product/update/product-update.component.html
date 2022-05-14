@@ -109,27 +109,39 @@
         </div> -->
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.ward" for="field_ward">Ward</label>
-          <select class="form-control" id="field_ward" data-cy="ward" name="ward" formControlName="ward">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="wardOption.id === editForm.get('ward')!.value?.id ? editForm.get('ward')!.value : wardOption"
-              *ngFor="let wardOption of wardsSharedCollection; trackBy: trackWardById"
-            >
-              {{ wardOption.wardName }}
-            </option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
           <label class="form-label" jhiTranslate="junkShopApplicationApp.product.district" for="field_district">District</label>
-          <select class="form-control" id="field_district" data-cy="district" name="district" formControlName="district">
-            <option [ngValue]="null"></option>
+          <select
+            class="form-control"
+            id="field_district"
+            data-cy="district"
+            name="district"
+            formControlName="district"
+            (ngModelChange)="onDistrictChange($event)"
+          >
             <option
               [ngValue]="districtOption.id === editForm.get('district')!.value?.id ? editForm.get('district')!.value : districtOption"
               *ngFor="let districtOption of districtsSharedCollection; trackBy: trackDistrictById"
             >
               {{ districtOption.districtName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="junkShopApplicationApp.product.ward" for="field_ward">Ward</label>
+          <select
+            [attr.disabled]="editForm.get('district')!.value ? null : true"
+            class="form-control"
+            id="field_ward"
+            data-cy="ward"
+            name="ward"
+            formControlName="ward"
+          >
+            <option
+              [ngValue]="wardOption.id === editForm.get('ward')!.value?.id ? editForm.get('ward')!.value : wardOption"
+              *ngFor="let wardOption of wardsSharedCollectionByDistrict; trackBy: trackWardById"
+            >
+              {{ wardOption.wardName }}
             </option>
           </select>
         </div>

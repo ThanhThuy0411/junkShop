@@ -17,7 +17,7 @@ import { DistrictService } from 'app/entities/district/service/district.service'
 import { ProductType } from 'app/entities/enumerations/product-type.model';
 import { ProductStatus } from 'app/entities/enumerations/product-status.model';
 
-export const maxQuery = { page: 0, size: 9999};
+export const maxQuery = { page: 0, size: 9999 };
 
 @Component({
   selector: 'jhi-product-update',
@@ -29,6 +29,7 @@ export class ProductUpdateComponent implements OnInit {
   productStatusValues = Object.keys(ProductStatus);
 
   wardsSharedCollection: IWard[] = [];
+  wardsSharedCollectionByDistrict: IWard[] = [];
   districtsSharedCollection: IDistrict[] = [];
 
   editForm = this.fb.group({
@@ -46,7 +47,6 @@ export class ProductUpdateComponent implements OnInit {
   });
   product?: IProduct;
 
-
   constructor(
     protected productService: ProductService,
     protected wardService: WardService,
@@ -55,7 +55,6 @@ export class ProductUpdateComponent implements OnInit {
     protected fb: FormBuilder
   ) {}
 
-  
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ product }) => {
       if (product.id === undefined) {
@@ -71,6 +70,14 @@ export class ProductUpdateComponent implements OnInit {
 
   previousState(): void {
     window.history.back();
+  }
+
+  onDistrictChange(selectedDistrict: IDistrict): void {
+    // reset value for ward
+    this.editForm.controls['ward'].setValue('');
+
+    // filter ward list by selected district
+    this.wardsSharedCollectionByDistrict = this.wardsSharedCollection.filter(ward => ward.district?.id === selectedDistrict.id);
   }
 
   save(): void {

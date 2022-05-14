@@ -50,8 +50,14 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="junkShopApplicationApp.order.district" for="field_district">District</label>
-          <select class="form-control" id="field_district" data-cy="district" name="district" formControlName="district">
-            <option [ngValue]="null"></option>
+          <select
+            (ngModelChange)="onDistrictChange($event)"
+            class="form-control"
+            id="field_district"
+            data-cy="district"
+            name="district"
+            formControlName="district"
+          >
             <option
               [ngValue]="districtOption.id === editForm.get('district')!.value?.id ? editForm.get('district')!.value : districtOption"
               *ngFor="let districtOption of districtsSharedCollection; trackBy: trackDistrictById"
@@ -63,11 +69,17 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="junkShopApplicationApp.order.ward" for="field_ward">Ward</label>
-          <select class="form-control" id="field_ward" data-cy="ward" name="ward" formControlName="ward">
-            <option [ngValue]="null"></option>
+          <select
+            [attr.disabled]="editForm.get('district')!.value ? null : true"
+            class="form-control"
+            id="field_ward"
+            data-cy="ward"
+            name="ward"
+            formControlName="ward"
+          >
             <option
               [ngValue]="wardOption.id === editForm.get('ward')!.value?.id ? editForm.get('ward')!.value : wardOption"
-              *ngFor="let wardOption of wardsSharedCollection; trackBy: trackWardById"
+              *ngFor="let wardOption of wardsSharedCollectionByDistrict; trackBy: trackWardById"
             >
               {{ wardOption.wardName }}
             </option>
