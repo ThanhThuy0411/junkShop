@@ -1,3 +1,4 @@
+import { DashboardComponent } from './../dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -11,6 +12,14 @@ const productRoute: Routes = [
   {
     path: '',
     component: ProductComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
     data: {
       defaultSort: 'id,asc',
     },

@@ -55,18 +55,7 @@
                 <span jhiTranslate="global.menu.entities.product">Product</span>
               </a>
             </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="file"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.file">File</span>
-              </a>
-            </li>
+
             <li>
               <a
                 class="dropdown-item"
@@ -79,7 +68,7 @@
                 <span jhiTranslate="global.menu.entities.order">Order</span>
               </a>
             </li>
-            <li>
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
               <a
                 class="dropdown-item"
                 routerLink="ward"
@@ -91,7 +80,7 @@
                 <span jhiTranslate="global.menu.entities.ward">Ward</span>
               </a>
             </li>
-            <li>
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
               <a
                 class="dropdown-item"
                 routerLink="district"
@@ -166,7 +155,7 @@
           <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu" data-cy="accountMenu">
             <span *ngIf="!account?.imageUrl">
               <fa-icon icon="user"></fa-icon>
-              <span jhiTranslate="global.menu.account.main">Account</span>
+              <span>{{ account?.login ?? 'Account' }}</span>
             </span>
             <span *ngIf="account?.imageUrl">
               <img [src]="account!.imageUrl" class="profile-image rounded-circle" alt="Avatar" />

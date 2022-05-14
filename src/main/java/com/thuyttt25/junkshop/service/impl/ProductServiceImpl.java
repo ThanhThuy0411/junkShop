@@ -76,9 +76,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(Pageable pageable) {
+    public Page<ProductDTO> findAll(Pageable pageable, Long userId) {
         log.debug("Request to get all Products");
-        return productRepository.findAll(pageable).map(productMapper::toDto);
+        Optional<Long>  userIdOp = Optional.ofNullable(userId);
+        if(userIdOp.isPresent()){
+            return productRepository.findAllByUserId(pageable , userIdOp.get()).map(productMapper::toDto);
+        }
+        else{
+            return productRepository.findAll(pageable).map(productMapper::toDto);
+        }
     }
 
     @Override

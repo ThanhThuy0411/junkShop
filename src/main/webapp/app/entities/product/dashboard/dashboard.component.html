@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="ProductHeading">
-    <span jhiTranslate="junkShopApplicationApp.product.home.title">Products</span>
+    <span>Products Home</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
@@ -32,27 +32,15 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="productName">
             <span jhiTranslate="junkShopApplicationApp.product.productName">Product Name</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="productType">
-            <span jhiTranslate="junkShopApplicationApp.product.productType">Product Type</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+          <th scope="col" jhiSortBy="productType"><span>Type</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="price">
             <span jhiTranslate="junkShopApplicationApp.product.price">Price</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="address">
             <span jhiTranslate="junkShopApplicationApp.product.address">Address</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="description">
-            <span jhiTranslate="junkShopApplicationApp.product.description">Description</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="productStatus">
-            <span jhiTranslate="junkShopApplicationApp.product.productStatus">Product Status</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="date">
-            <span jhiTranslate="junkShopApplicationApp.product.date">Date</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="ward.id">
             <span jhiTranslate="junkShopApplicationApp.product.ward">Ward</span> <fa-icon icon="sort"></fa-icon>
@@ -60,46 +48,38 @@
           <th scope="col" jhiSortBy="district.id">
             <span jhiTranslate="junkShopApplicationApp.product.district">District</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="junkShopApplicationApp.product.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="productStatus"><span>Status</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="date"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let product of products; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/product', product.id, 'view']">{{ product.id }}</a>
-          </td>
           <td>{{ product.productName }}</td>
           <td jhiTranslate="{{ 'junkShopApplicationApp.ProductType.' + product.productType }}">{{ product.productType }}</td>
           <td>{{ product.price }}</td>
           <td>{{ product.address }}</td>
+          <td>{{ product.ward?.wardName }}</td>
+          <td>{{ product.district?.districtName }}</td>
           <td>{{ product.description }}</td>
           <td jhiTranslate="{{ 'junkShopApplicationApp.ProductStatus.' + product.productStatus }}">{{ product.productStatus }}</td>
           <td>{{ product.date | formatMediumDatetime }}</td>
-          <td>
-            <div *ngIf="product.ward">
-              <a [routerLink]="['/ward', product.ward?.id, 'view']">{{ product.ward?.wardName }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="product.district">
-              <a [routerLink]="['/district', product.district?.id, 'view']">{{ product.district?.districtName }}</a>
-            </div>
-          </td>
+
           <td class="text-end">
             <div class="btn-group">
               <button
                 type="submit"
-                [routerLink]="['/product', product.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
+                [attr.disabled]="product.productStatus === 'Sold' ? true : null"
+                (click)="openOderDialog(product)"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
               >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(product)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                <fa-icon icon="cart-shopping"></fa-icon>
+                <span class="d-none d-md-inline">Buy</span>
               </button>
             </div>
           </td>

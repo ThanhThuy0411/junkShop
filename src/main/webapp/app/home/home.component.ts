@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     // }
 
     if (!this.accountService.hasAnyAuthority('ROLE_ADMIN')) {
-      this.router.navigate(['/product']);
+      this.router.navigate(['/product/dashboard']);
     }
   }
 

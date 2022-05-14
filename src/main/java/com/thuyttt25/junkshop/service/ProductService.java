@@ -39,7 +39,7 @@ public interface ProductService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    Page<ProductDTO> findAll(Pageable pageable);
+    Page<ProductDTO> findAll(Pageable pageable, Long userId);
 
     /**
      * Get the "id" product.

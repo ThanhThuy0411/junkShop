@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'app/shared/shared.module';
 import { ProductComponent } from './list/product.component';
@@ -8,7 +9,7 @@ import { ProductRoutingModule } from './route/product-routing.module';
 
 @NgModule({
   imports: [SharedModule, ProductRoutingModule],
-  declarations: [ProductComponent, ProductDetailComponent, ProductUpdateComponent, ProductDeleteDialogComponent],
+  declarations: [ProductComponent, ProductDetailComponent, ProductUpdateComponent, ProductDeleteDialogComponent, DashboardComponent],
   entryComponents: [ProductDeleteDialogComponent],
 })
 export class ProductModule {}
