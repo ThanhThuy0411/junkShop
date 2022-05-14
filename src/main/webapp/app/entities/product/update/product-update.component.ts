@@ -17,6 +17,8 @@ import { DistrictService } from 'app/entities/district/service/district.service'
 import { ProductType } from 'app/entities/enumerations/product-type.model';
 import { ProductStatus } from 'app/entities/enumerations/product-status.model';
 
+export const maxQuery = { page: 0, size: 9999};
+
 @Component({
   selector: 'jhi-product-update',
   templateUrl: './product-update.component.html',
@@ -32,14 +34,14 @@ export class ProductUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     productName: [null, [Validators.required]],
-    productType: [],
-    price: [],
-    address: [],
+    productType: ['', [Validators.required]],
+    price: ['', [Validators.required]],
+    address: ['', [Validators.required]],
     description: [],
     productStatus: [],
     date: [],
-    ward: [],
-    district: [],
+    ward: ['', [Validators.required]],
+    district: ['', [Validators.required]],
     user: [],
   });
   product?: IProduct;
@@ -74,9 +76,10 @@ export class ProductUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const product = this.createFromForm();
-    if (product.id !== undefined) {
+    if (product.id) {
       this.subscribeToSaveResponse(this.productService.update(product));
     } else {
+      product.productStatus = ProductStatus.Stocking;
       this.subscribeToSaveResponse(this.productService.create(product));
     }
   }
@@ -132,13 +135,13 @@ export class ProductUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.wardService
-      .query()
+      .query(maxQuery)
       .pipe(map((res: HttpResponse<IWard[]>) => res.body ?? []))
       .pipe(map((wards: IWard[]) => this.wardService.addWardToCollectionIfMissing(wards, this.editForm.get('ward')!.value)))
       .subscribe((wards: IWard[]) => (this.wardsSharedCollection = wards));
 
     this.districtService
-      .query()
+      .query(maxQuery)
       .pipe(map((res: HttpResponse<IDistrict[]>) => res.body ?? []))
       .pipe(
         map((districts: IDistrict[]) =>

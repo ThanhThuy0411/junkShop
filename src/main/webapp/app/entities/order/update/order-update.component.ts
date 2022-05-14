@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { maxQuery } from './../../product/update/product-update.component';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
@@ -16,12 +17,16 @@ import { IDistrict } from 'app/entities/district/district.model';
 import { DistrictService } from 'app/entities/district/service/district.service';
 import { IProduct } from 'app/entities/product/product.model';
 import { ProductService } from 'app/entities/product/service/product.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductComponent } from 'app/entities/product/list/product.component';
 
 @Component({
   selector: 'jhi-order-update',
   templateUrl: './order-update.component.html',
 })
 export class OrderUpdateComponent implements OnInit {
+  @Input() product?: IProduct;
+  @Input() productComponent?: ProductComponent;
   isSaving = false;
 
   wardsSharedCollection: IWard[] = [];
@@ -31,10 +36,10 @@ export class OrderUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     date: [],
-    address: [],
-    ward: [],
-    district: [],
-    product: [],
+    address: ['', [Validators.required]],
+    ward: ['', [Validators.required]],
+    district: ['', [Validators.required]],
+    product: ['', [Validators.required]],
     user: [],
   });
 
@@ -46,7 +51,8 @@ export class OrderUpdateComponent implements OnInit {
     protected districtService: DistrictService,
     protected productService: ProductService,
     protected activatedRoute: ActivatedRoute,
-    protected fb: FormBuilder
+    protected fb: FormBuilder,
+    public activeModal: NgbActiveModal
   ) {}
 
   ngOnInit(): void {
@@ -89,6 +95,15 @@ export class OrderUpdateComponent implements OnInit {
     return item.id!;
   }
 
+  updateFormFromDialog(): void {
+    this.order = new Order();
+    const today = dayjs().startOf('day');
+    this.order.date = today;
+    this.updateForm(this.order);
+
+    this.loadRelationshipsOptions();
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IOrder>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -97,7 +112,12 @@ export class OrderUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    if (this.product) {
+      this.activeModal.dismiss('Cross click');
+      this.productComponent?.loadPage();
+    } else {
+      this.previousState();
+    }
   }
 
   protected onSaveError(): void {
@@ -116,7 +136,7 @@ export class OrderUpdateComponent implements OnInit {
       address: order.address,
       ward: order.ward,
       district: order.district,
-      product: order.product,
+      product: this.product ?? order.product,
     });
 
     this.wardsSharedCollection = this.wardService.addWardToCollectionIfMissing(this.wardsSharedCollection, order.ward);
@@ -126,13 +146,13 @@ export class OrderUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.wardService
-      .query()
+      .query(maxQuery)
       .pipe(map((res: HttpResponse<IWard[]>) => res.body ?? []))
       .pipe(map((wards: IWard[]) => this.wardService.addWardToCollectionIfMissing(wards, this.editForm.get('ward')!.value)))
       .subscribe((wards: IWard[]) => (this.wardsSharedCollection = wards));
 
     this.districtService
-      .query()
+      .query(maxQuery)
       .pipe(map((res: HttpResponse<IDistrict[]>) => res.body ?? []))
       .pipe(
         map((districts: IDistrict[]) =>
@@ -141,13 +161,20 @@ export class OrderUpdateComponent implements OnInit {
       )
       .subscribe((districts: IDistrict[]) => (this.districtsSharedCollection = districts));
 
-    this.productService
-      .query()
-      .pipe(map((res: HttpResponse<IProduct[]>) => res.body ?? []))
-      .pipe(
-        map((products: IProduct[]) => this.productService.addProductToCollectionIfMissing(products, this.editForm.get('product')!.value))
-      )
-      .subscribe((products: IProduct[]) => (this.productsSharedCollection = products));
+    if (this.product?.id) {
+      this.productService
+        .find(this.product.id)
+        .pipe(map((res: HttpResponse<IProduct>) => res.body ?? {}))
+        .subscribe((product: IProduct) => (this.productsSharedCollection = [product]));
+    } else {
+      this.productService
+        .query(maxQuery)
+        .pipe(map((res: HttpResponse<IProduct[]>) => res.body ?? []))
+        .pipe(
+          map((products: IProduct[]) => this.productService.addProductToCollectionIfMissing(products, this.editForm.get('product')!.value))
+        )
+        .subscribe((products: IProduct[]) => (this.productsSharedCollection = products));
+    }
   }
 
   protected createFromForm(): IOrder {

@@ -1,7 +1,17 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-order-heading" data-cy="OrderCreateUpdateHeading" jhiTranslate="junkShopApplicationApp.order.home.createOrEditLabel">
+      <div *ngIf="product" class="modal-header">
+        <h4 class="modal-title">Order a product!</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+      </div>
+
+      <h2
+        *ngIf="!product"
+        id="jhi-order-heading"
+        data-cy="OrderCreateUpdateHeading"
+        jhiTranslate="junkShopApplicationApp.order.home.createOrEditLabel"
+      >
         Create or edit a Order
       </h2>
 
@@ -66,7 +76,14 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="junkShopApplicationApp.order.product" for="field_product">Product</label>
-          <select class="form-control" id="field_product" data-cy="product" name="product" formControlName="product">
+          <select
+            [attr.disabled]="product ? true : null"
+            class="form-control"
+            id="field_product"
+            data-cy="product"
+            name="product"
+            formControlName="product"
+          >
             <option [ngValue]="null"></option>
             <option
               [ngValue]="productOption.id === editForm.get('product')!.value?.id ? editForm.get('product')!.value : productOption"
@@ -79,7 +96,13 @@
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary"
+          (click)="product ? activeModal.dismiss('Cross click') : previousState()"
+        >
           <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
 

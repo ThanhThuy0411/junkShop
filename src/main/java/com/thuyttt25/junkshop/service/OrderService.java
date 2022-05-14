@@ -15,7 +15,7 @@ public interface OrderService {
      * @param orderDTO the entity to save.
      * @return the persisted entity.
      */
-    OrderDTO save(OrderDTO orderDTO);
+    OrderDTO save(OrderDTO orderDTO) throws Exception;
 
     /**
      * Updates a order.

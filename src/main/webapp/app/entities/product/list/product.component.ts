@@ -9,6 +9,8 @@ import { IProduct } from '../product.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { ProductService } from '../service/product.service';
 import { ProductDeleteDialogComponent } from '../delete/product-delete-dialog.component';
+import { flush } from '@angular/core/testing';
+import { OrderUpdateComponent } from 'app/entities/order/update/order-update.component';
 
 @Component({
   selector: 'jhi-product',
@@ -72,6 +74,14 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  openOderDialog(productSelected: IProduct): void {
+    const modalRef = this.modalService.open(OrderUpdateComponent);
+    modalRef.componentInstance.product = productSelected;
+    modalRef.componentInstance.productComponent = this;
+
+    modalRef.componentInstance.updateFormFromDialog();
+  }
+
   protected sort(): string[] {
     const result = [this.predicate + ',' + (this.ascending ? ASC : DESC)];
     if (this.predicate !== 'id') {
@@ -89,7 +99,7 @@ export class ProductComponent implements OnInit {
       const ascending = sort[1] === ASC;
       if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
         this.predicate = predicate;
-        this.ascending = ascending;
+        this.ascending = false;
         this.loadPage(pageNumber, true);
       }
     });
