@@ -1,11 +1,11 @@
 id;product_name;product_type;price;address;description;product_status;date;ward_id;district_id
-1;Giáo trình Tư tưởng;Textbooks;10000;Trường ĐHKT;;Sold;2022-05-01T17:51:24;18;3
+1;Giáo trình Tư tưởng;Textbooks;10000;Trường ĐHKT;;Stocking;2022-05-01T17:51:24;18;3
 2;Âm siêu tốc;HouseWare;90000;Chợ Bắc Mỹ An;;Stocking;2022-05-02T08:22:45;18;3
 3;Bàn học;HouseWare;250000;Chợ Cẩm Lệ;Kích thước: 50 X 70 cm;Stocking;2022-05-02T09:04:30;22;6
 4;Sách tiếng anh B1;Textbooks;35000;Trường ĐHKT;Giáo trình trường ĐHNN;Stocking;2022-05-01T19:20:20;18;3
 5;Tủ đựng quần áo;HouseWare;100000;102 Trần Văn Đán;Cao 1m6, rộng 1m;Stocking;2022-05-02T10:41:32;20;3
 6;Giày Nike;Other;400000;;Màu trắng, size: 38;Stocking;2022-05-01T16:18:49;32;4
-7;Quạt nhỏ;HouseWare;50000;;;Sold;2022-05-01T21:27:20;35;5
+7;Quạt nhỏ;HouseWare;50000;;;Stocking;2022-05-01T21:27:20;35;5
 8;Dây phone AKG;Other;200000;Trần Văn Dư;New 90%;Stocking;2022-05-02T09:27:13;13;2
-9;Bếp điện từ;HouseWare;300000;Chợ Hòa Xuân;;Sold;2022-05-02T02:45:06;27;6
+9;Bếp điện từ;HouseWare;300000;Chợ Hòa Xuân;;Stocking;2022-05-02T02:45:06;27;6
 10;Dev Up;Textbooks;295000;;Sách công nghệ thông tin;Stocking;2022-05-02T04:53:35;2;1
