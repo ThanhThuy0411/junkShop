@@ -60,12 +60,13 @@
           <td>{{ order.address }}</td>
           <td>
             <div *ngIf="order.district">
-              <a [routerLink]="['/district', order.district?.id, 'view']">{{ order.district?.districtName }}</a>
+              <!-- <a>{{ order.district?.districtName }}</a> -->
+              <td>{{ order.district?.districtName }}</td>
             </div>
           </td>
           <td>
             <div *ngIf="order.ward">
-              <a [routerLink]="['/ward', order.ward?.id, 'view']">{{ order.ward?.wardName }}</a>
+              <td>{{ order.ward?.wardName }}</td>
             </div>
           </td>
           <td>

@@ -51,13 +51,13 @@
         <dt><span jhiTranslate="junkShopApplicationApp.product.ward">Ward</span></dt>
         <dd>
           <div *ngIf="product.ward">
-            <a [routerLink]="['/ward', product.ward?.id, 'view']">{{ product.ward?.wardName }}</a>
+            <td>{{ product.ward?.wardName }}</td>
           </div>
         </dd>
         <dt><span jhiTranslate="junkShopApplicationApp.product.district">District</span></dt>
         <dd>
           <div *ngIf="product.district">
-            <a [routerLink]="['/district', product.district?.id, 'view']">{{ product.district?.districtName }}</a>
+            <td>{{ product.district?.districtName }}</td>
           </div>
         </dd>
       </dl>
