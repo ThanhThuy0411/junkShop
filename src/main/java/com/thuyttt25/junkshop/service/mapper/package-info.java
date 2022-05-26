@@ -1,4 +1,1 @@
-/**
- * MapStruct mappers for mapping domain objects and Data Transfer Objects.
- */
-package com.thuyttt25.junkshop.service.mapper;
+//package com.thuyttt25.junkshop.service.mapper;

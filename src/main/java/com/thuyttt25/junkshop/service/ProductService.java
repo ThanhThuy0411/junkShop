@@ -5,9 +5,6 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-/**
- * Service Interface for managing {@link com.thuyttt25.junkshop.domain.Product}.
- */
 public interface ProductService {
     /**
      * Save a product.

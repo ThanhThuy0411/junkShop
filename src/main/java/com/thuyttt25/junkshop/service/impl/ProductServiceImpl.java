@@ -41,7 +41,6 @@ public class ProductServiceImpl implements ProductService {
         log.debug("Request to save Product : {}", productDTO);
         Product product = productMapper.toEntity(productDTO);
 
-        // Set current user for this product
         Optional<User> user = this.userService.getUserWithAuthorities();
         if(user.isPresent()){
             product.setUser(user.get());
