@@ -25,9 +25,6 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
-/**
- * REST controller for managing {@link com.thuyttt25.junkshop.domain.Product}.
- */
 @RestController
 @RequestMapping("/api")
 public class ProductResource {
@@ -145,7 +142,9 @@ public class ProductResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of products in body.
      */
     @GetMapping("/products")
-    public ResponseEntity<List<ProductDTO>> getAllProducts(@org.springdoc.api.annotations.ParameterObject Pageable pageable, @RequestParam(required = false) final Long userId) {
+    public ResponseEntity<List<ProductDTO>> getAllProducts(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false) final Long userId) {
         log.debug("REST request to get a page of Products");
         Page<ProductDTO> page = productService.findAll(pageable, userId);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);

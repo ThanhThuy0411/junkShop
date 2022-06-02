@@ -28,6 +28,7 @@ export class OrderUpdateComponent implements OnInit {
   @Input() product?: IProduct;
   @Input() productComponent?: ProductComponent;
   isSaving = false;
+  isEditForm = true;
 
   wardsSharedCollection: IWard[] = [];
   wardsSharedCollectionByDistrict: IWard[] = [];
@@ -53,10 +54,12 @@ export class OrderUpdateComponent implements OnInit {
     protected productService: ProductService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder,
-    public activeModal: NgbActiveModal
+    public activeModal?: NgbActiveModal
   ) {}
 
   ngOnInit(): void {
+    this.loadRelationshipsOptions();
+
     this.activatedRoute.data.subscribe(({ order }) => {
       if (order.id === undefined) {
         const today = dayjs().startOf('day');
@@ -65,9 +68,11 @@ export class OrderUpdateComponent implements OnInit {
       this.order = order;
 
       this.updateForm(order);
-
-      this.loadRelationshipsOptions();
     });
+
+    if (this.product) {
+      this.isEditForm = false;
+    }
   }
 
   previousState(): void {
@@ -108,9 +113,9 @@ export class OrderUpdateComponent implements OnInit {
     this.order = new Order();
     const today = dayjs().startOf('day');
     this.order.date = today;
-    this.updateForm(this.order);
-
     this.loadRelationshipsOptions();
+
+    this.updateForm(this.order);
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IOrder>>): void {
@@ -122,7 +127,7 @@ export class OrderUpdateComponent implements OnInit {
 
   protected onSaveSuccess(): void {
     if (this.product) {
-      this.activeModal.dismiss('Cross click');
+      this.activeModal?.dismiss('Cross click');
       this.productComponent?.loadPage();
     } else {
       this.previousState();
@@ -151,6 +156,9 @@ export class OrderUpdateComponent implements OnInit {
     this.wardsSharedCollection = this.wardService.addWardToCollectionIfMissing(this.wardsSharedCollection, order.ward);
     this.districtsSharedCollection = this.districtService.addDistrictToCollectionIfMissing(this.districtsSharedCollection, order.district);
     this.productsSharedCollection = this.productService.addProductToCollectionIfMissing(this.productsSharedCollection, order.product);
+
+    // filter ward list by selected district
+    this.wardsSharedCollectionByDistrict = this.wardsSharedCollection.filter(ward => ward.district?.id === order.district?.id);
   }
 
   protected loadRelationshipsOptions(): void {

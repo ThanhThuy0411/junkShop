@@ -4,23 +4,23 @@
       <h1 jhiTranslate="register.title" data-cy="registerTitle">Registration</h1>
 
       <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
-        <strong>Registration saved!</strong> Please check your email for confirmation.
+        <strong>Đăng ký thành công!</strong> Please wait for the administrator to turn on the active status.
       </div>
 
       <div class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
-        <strong>Registration failed!</strong> Please try again later.
+        <strong>Đăng ký thất bại!</strong> Hãy thử lại.
       </div>
 
       <div class="alert alert-danger" *ngIf="errorUserExists" jhiTranslate="register.messages.error.userexists">
-        <strong>Login name already registered!</strong> Please choose another one.
+        <strong>Tên đăng nhập đã được đăng ký!</strong> Vui lòng chọn một tên khác.
       </div>
 
       <div class="alert alert-danger" *ngIf="errorEmailExists" jhiTranslate="register.messages.error.emailexists">
-        <strong>Email is already in use!</strong> Please choose another one.
+        <strong>Email đã được sử dụng!</strong> Vui lòng nhập email khác.
       </div>
 
       <div class="alert alert-danger" *ngIf="doNotMatch" jhiTranslate="global.messages.error.dontmatch">
-        The password and its confirmation do not match!
+        Mật khẩu hoặc tên đăng nhập không chính xác!
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@
               *ngIf="registerForm.get('login')?.errors?.required"
               jhiTranslate="register.messages.validate.login.required"
             >
-              Your username is required.
+              Tên người dùng của bạn là bắt buộc.
             </small>
 
             <small
@@ -55,7 +55,7 @@
               *ngIf="registerForm.get('login')?.errors?.minlength"
               jhiTranslate="register.messages.validate.login.minlength"
             >
-              Your username is required to be at least 1 character.
+              Tên người dùng của bạn bắt buộc phải có ít nhất 1 ký tự.
             </small>
 
             <small
@@ -63,7 +63,7 @@
               *ngIf="registerForm.get('login')?.errors?.maxlength"
               jhiTranslate="register.messages.validate.login.maxlength"
             >
-              Your username cannot be longer than 50 characters.
+              Tên người dùng của bạn không được dài hơn 50 ký tự.
             </small>
 
             <small
@@ -71,7 +71,7 @@
               *ngIf="registerForm.get('login')?.errors?.pattern"
               jhiTranslate="register.messages.validate.login.pattern"
             >
-              Your username can only contain letters and digits.
+              Tên người dùng của bạn chỉ có thể chứa các chữ cái và chữ số.
             </small>
           </div>
         </div>
@@ -94,7 +94,7 @@
               *ngIf="registerForm.get('email')?.errors?.required"
               jhiTranslate="global.messages.validate.email.required"
             >
-              Your email is required.
+              Email của bạn là bắt buộc.
             </small>
 
             <small
@@ -102,7 +102,7 @@
               *ngIf="registerForm.get('email')?.errors?.invalid"
               jhiTranslate="global.messages.validate.email.invalid"
             >
-              Your email is invalid.
+              Địa chỉ email của bạn không hợp lệ.
             </small>
 
             <small
@@ -110,7 +110,7 @@
               *ngIf="registerForm.get('email')?.errors?.minlength"
               jhiTranslate="global.messages.validate.email.minlength"
             >
-              Your email is required to be at least 5 characters.
+              Email của bạn bắt buộc phải có ít nhất 5 ký tự.
             </small>
 
             <small
@@ -118,7 +118,7 @@
               *ngIf="registerForm.get('email')?.errors?.maxlength"
               jhiTranslate="global.messages.validate.email.maxlength"
             >
-              Your email cannot be longer than 100 characters.
+              Email của bạn không được dài hơn 100 ký tự.
             </small>
           </div>
         </div>
@@ -143,7 +143,7 @@
               *ngIf="registerForm.get('password')?.errors?.required"
               jhiTranslate="global.messages.validate.newpassword.required"
             >
-              Your password is required.
+              Mật khẩu của bạn là bắt buộc.
             </small>
 
             <small
@@ -151,7 +151,7 @@
               *ngIf="registerForm.get('password')?.errors?.minlength"
               jhiTranslate="global.messages.validate.newpassword.minlength"
             >
-              Your password is required to be at least 4 characters.
+              Mật khẩu của bạn bắt buộc phải có ít nhất 4 ký tự.
             </small>
 
             <small
@@ -159,7 +159,7 @@
               *ngIf="registerForm.get('password')?.errors?.maxlength"
               jhiTranslate="global.messages.validate.newpassword.maxlength"
             >
-              Your password cannot be longer than 50 characters.
+              Mật khẩu của bạn không được dài hơn 50 ký tự.
             </small>
           </div>
 
@@ -189,7 +189,7 @@
               *ngIf="registerForm.get('confirmPassword')?.errors?.required"
               jhiTranslate="global.messages.validate.confirmpassword.required"
             >
-              Your confirmation password is required.
+              Mật khẩu xác nhận của bạn là bắt buộc.
             </small>
 
             <small
@@ -197,7 +197,7 @@
               *ngIf="registerForm.get('confirmPassword')?.errors?.minlength"
               jhiTranslate="global.messages.validate.confirmpassword.minlength"
             >
-              Your confirmation password is required to be at least 4 characters.
+              Mật khẩu xác nhận của bạn bắt buộc phải có ít nhất 4 ký tự.
             </small>
 
             <small
@@ -205,7 +205,7 @@
               *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength"
               jhiTranslate="global.messages.validate.confirmpassword.maxlength"
             >
-              Your confirmation password cannot be longer than 50 characters.
+              Mật khẩu xác nhận của bạn không được dài hơn 50 ký tự.
             </small>
           </div>
         </div>

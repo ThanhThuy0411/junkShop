@@ -50,14 +50,11 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO save(OrderDTO orderDTO) throws Exception {
         log.debug("Request to save Order : {}", orderDTO);
         Order order = orderMapper.toEntity(orderDTO);
-        // Set current user for this product
-
         Optional<User> user = this.userService.getUserWithAuthorities();
         if(user.isPresent()){
             order.setUser(user.get());
         }
         order = orderRepository.save(order);
-
         ProductDTO productDTO = orderDTO.getProduct();
         productDTO.setProductStatus(ProductStatus.Sold);
         Optional<ProductDTO> productUpdate = this.productService.partialUpdate(productDTO);
@@ -78,12 +75,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Optional<OrderDTO> partialUpdate(OrderDTO orderDTO) {
         log.debug("Request to partially update Order : {}", orderDTO);
-
         return orderRepository
             .findById(orderDTO.getId())
             .map(existingOrder -> {
                 orderMapper.partialUpdate(existingOrder, orderDTO);
-
                 return existingOrder;
             })
             .map(orderRepository::save)
@@ -100,7 +95,6 @@ public class OrderServiceImpl implements OrderService {
         }
         else{
             return orderRepository.findAll(pageable).map(orderMapper::toDto);
-
         }
     }
 
@@ -114,6 +108,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Order : {}", id);
+        Optional<Order> orderOption = orderRepository.findById(id);
         orderRepository.deleteById(id);
+        if(orderOption.isPresent()){
+            Optional<ProductDTO> productOption = productService.findOne(orderOption.get().getProduct().getId());
+            if(productOption.isPresent()){
+                ProductDTO productDTO = productOption.get();
+                productDTO.setProductStatus(ProductStatus.Stocking);
+                productService.save(productDTO);
+            }
+        }
     }
 }

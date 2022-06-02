@@ -40,12 +40,10 @@ public class ProductServiceImpl implements ProductService {
     public ProductDTO save(ProductDTO productDTO) {
         log.debug("Request to save Product : {}", productDTO);
         Product product = productMapper.toEntity(productDTO);
-
         Optional<User> user = this.userService.getUserWithAuthorities();
         if(user.isPresent()){
             product.setUser(user.get());
         }
-
         product = productRepository.save(product);
         return productMapper.toDto(product);
     }
@@ -66,7 +64,6 @@ public class ProductServiceImpl implements ProductService {
             .findById(productDTO.getId())
             .map(existingProduct -> {
                 productMapper.partialUpdate(existingProduct, productDTO);
-
                 return existingProduct;
             })
             .map(productRepository::save)

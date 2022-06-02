@@ -178,6 +178,7 @@ public class UserResource {
         return pageable.getSort().stream().map(Sort.Order::getProperty).allMatch(ALLOWED_ORDERED_PROPERTIES::contains);
     }
 
+
     /**
      * {@code GET /admin/users/:login} : get the "login" user.
      *
